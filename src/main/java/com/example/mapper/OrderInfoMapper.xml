@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrderInfoMapper">
+<select id="selectNoPayOrders" resultType="OrderInfo">
+    select * from v_order
+    where ( userId = #{id}
+    and startTime is not null
+    and paytime is null)
+</select>
+
+<select id="selectNoReceiveOrders" resultType="OrderInfo">
+    select * from v_order
+    where ( userId = #{id}
+        and startTime is not null
+        and paytime is not null
+        and receivingTime is null
+              )
+</select>
+
+<select id="selectNoCommentOrders" resultType="OrderInfo">
+    select * from v_order
+    where ( userId = #{id}
+        and startTime is not null
+        and paytime is not null
+        and receivingTime is not null
+        and commentTime is null
+              )
+</select>
+
+</mapper>
